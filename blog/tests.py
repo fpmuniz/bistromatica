@@ -19,7 +19,7 @@ class PostFactory(factory.DjangoModelFactory):
 
 	creator = factory.LazyFunction(UserFactory.create)
 	title = factory.Faker('sentence')
-	content = factory.Faker('paragraphs')
+	content = factory.Faker('text')
 
 class PostTestCase(TestCase):
 	def test_publish(self):
