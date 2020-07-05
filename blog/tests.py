@@ -26,3 +26,8 @@ class PostTestCase(TestCase):
 		post = PostFactory.create()
 		post.publish()
 		self.assertIsNotNone(post.published_at)
+
+	def test_unpublished_not_showing(self):
+		post = PostFactory.create()
+		self.assertEqual(Post.objects.count(), 0)
+		self.assertEqual(Post.all_objects.count(), 1)
