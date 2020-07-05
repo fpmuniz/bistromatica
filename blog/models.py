@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -9,3 +11,7 @@ class Post(models.Model):
 	published_at = models.DateTimeField(null=True, editable=False)
 	title = models.CharField(max_length=256)
 	content = models.TextField(blank=True)
+
+	def publish(self):
+		self.published_at = datetime.now()
+		self.save()
