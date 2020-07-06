@@ -1,5 +1,6 @@
 import warnings
 from datetime import datetime
+from markdown import markdown
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -16,6 +17,7 @@ class Post(models.Model):
 	published_at = models.DateTimeField(null=True, editable=False)
 	title = models.CharField(max_length=256)
 	content = models.TextField(blank=True)
+	html_content = models.TextField(blank=True, editable=False)
 
 	objects = PostManager()
 	all_objects = models.Manager()
@@ -30,3 +32,7 @@ class Post(models.Model):
 			return
 		self.published_at = datetime.now()
 		self.save()
+
+	def save(self, *args, **kwargs):
+		self.html_content = markdown(self.content)
+		super().save(*args, **kwargs)

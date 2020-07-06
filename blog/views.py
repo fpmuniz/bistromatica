@@ -14,4 +14,4 @@ class PostListView(ListView):
 	template_name = 'blog/index.html'
 
 	def get_queryset(self):
-		return Post.objects.order_by('published_at')
+		return Post.objects.order_by('-published_at')

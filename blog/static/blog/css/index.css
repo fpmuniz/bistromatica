@@ -8,7 +8,6 @@ body {
 	color: var(--light-green);
 	font-family: Verdana;
 	margin: auto;
-	max-width: 1080px;
 	width: 75%;
 }
 
@@ -22,6 +21,7 @@ article {
 	border-width: 2px;
 	border-color: white;
 	padding: 50px;
+	margin-bottom: 50px;
 }
 
 .text {

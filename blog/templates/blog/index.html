@@ -17,7 +17,7 @@
 			<p>by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
 
 			<div class="text">
-				{{ post.content }}
+				{{ post.html_content|safe }}
 			</div>
 	</article>
 	{% endfor %}
