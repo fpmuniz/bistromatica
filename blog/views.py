@@ -7,7 +7,7 @@ from .models import Post
 class PostListView(ListView):
 	model = Post
 	paginate_by = 10
-	template_name = 'index.html'
+	template_name = 'blog/index.html'
 
 	def get_queryset(self):
 		return Post.objects.order_by('published_at')
