@@ -14,7 +14,7 @@
 	{% for post in object_list %}
 	<article>
 			<h2>{{ post.title }}</h2>
-			<h3>by {{ post.creator.first_name }} {{ post.creator.last_name }}</h3>
+			<p>by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
 
 			<div class="text">
 				{{ post.content }}
