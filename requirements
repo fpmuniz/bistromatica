@@ -1,2 +1,3 @@
 django
 factory_boy
+psycopg2
