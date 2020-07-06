@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title>bistromática - {{ post.title }}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}">
+</head>
+
+<body>
+	<article>
+			<h1>{{ post.title }}</h1>
+			<p>by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
+
+			<div class="text">
+				{{ post.html_content|safe }}
+			</div>
+	</article>
+</body>
+</html>

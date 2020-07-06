@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 
 from .models import Post
@@ -15,3 +15,8 @@ class PostListView(ListView):
 
 	def get_queryset(self):
 		return Post.objects.order_by('-published_at')
+
+
+class PostDetailView(DetailView):
+	model = Post
+	template = 'blog/post_detail.html'
