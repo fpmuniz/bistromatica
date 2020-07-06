@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title>bistromática</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}">
+</head>
+
+<body>
+	<header>
+		<h1>bistromática</h1>
+	</header>
+
+	{% for post in object_list %}
+	<article>
+			<h2>{{ post.title }}</h2>
+			<h3>by {{ post.creator.first_name }} {{ post.creator.last_name }}</h3>
+
+			<div class="text">
+				{{ post.content }}
+			</div>
+	</article>
+	{% endfor %}
+</body>
+</html>
