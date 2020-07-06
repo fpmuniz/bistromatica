@@ -9,6 +9,7 @@ body {
 	font-family: Verdana;
 	margin: auto;
 	width: 75%;
+	max-width: 800px;
 }
 
 header {
