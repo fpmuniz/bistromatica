@@ -1,3 +1,4 @@
+import warnings
 from datetime import datetime
 
 from django.db import models
@@ -19,6 +20,13 @@ class Post(models.Model):
 	objects = PostManager()
 	all_objects = models.Manager()
 
+	class AlreadyPublishedWarning(RuntimeWarning):
+		pass
+
 	def publish(self):
+		if self.published_at:
+			w = self.AlreadyPublishedWarning(f'Trying to publish post "{self.title}", which has already been published.')
+			warnings.warn(w)
+			return
 		self.published_at = datetime.now()
 		self.save()

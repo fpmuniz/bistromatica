@@ -22,12 +22,18 @@ class PostFactory(factory.DjangoModelFactory):
 	content = factory.Faker('text')
 
 class PostTestCase(TestCase):
+	def setUp(self):
+		self.post = PostFactory.create()
+
 	def test_publish(self):
-		post = PostFactory.create()
-		post.publish()
-		self.assertIsNotNone(post.published_at)
+		self.post.publish()
+		self.assertIsNotNone(self.post.published_at)
 
 	def test_unpublished_not_showing(self):
-		post = PostFactory.create()
 		self.assertEqual(Post.objects.count(), 0)
 		self.assertEqual(Post.all_objects.count(), 1)
+
+	def test_publish_twice_warns(self):
+		self.post.publish()
+		with self.assertWarns(self.post.AlreadyPublishedWarning):
+			self.post.publish()
