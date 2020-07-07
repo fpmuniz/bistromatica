@@ -48,7 +48,8 @@ a:hover {
 }
 
 .subtitle {
-	font-size: small;
+	font-size: smaller;
+	font-style: italic;
 }
 
 #title {
