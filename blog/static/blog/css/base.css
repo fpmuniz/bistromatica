@@ -47,6 +47,18 @@ a:hover {
 	text-decoration: underline;
 }
 
+ol {
+	color: var(--text);
+}
+
+ul {
+	color: var(--text);
+}
+
+code {
+	font-family: monospace;
+	font-size: large;
+}
 .italic {
 	font-style: italic;
 }
