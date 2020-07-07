@@ -5,7 +5,7 @@
 
 body {
 	background: var(--dark-bg);
-	color: var(--light-green);
+	color: white;
 	font-family: Verdana;
 	margin: auto;
 	width: 75%;
@@ -14,6 +14,10 @@ body {
 
 header {
 	text-align: center;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: var(--light-green);
 }
 
 article {
