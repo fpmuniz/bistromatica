@@ -8,13 +8,19 @@ bistromática - edit post
 {% block content %}
 <article>
 	<form method="post" action="">
+		{% csrf_token %}
 		{{ form }}
 		<button type="button">Cancel</button>
+
 		{% if post.id %}
 		<button type="button">Delete</button>
 		{% endif %}
+
+		{% if not post.published_at %}
 		<button type="button">Publish!</button>
-		<button type="button">Save</button>
+		{% endif %}
+
+		<button type="submit">Save</button>
 	</form>
 </article>
 {% endblock content %}

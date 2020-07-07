@@ -12,6 +12,11 @@ from .forms import PostForm
 def index(request):
 	return HttpResponseRedirect('posts/')
 
+def about(request):
+	template = loader.get_template('blog/about.html')
+	context = {}
+	return HttpResponse(template.render(context, request))
+
 class PostListView(ListView):
 	model = Post
 	paginate_by = 10
