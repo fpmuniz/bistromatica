@@ -47,6 +47,10 @@ a:hover {
 	font-style: italic;
 }
 
+.subtitle {
+	font-size: small;
+}
+
 #title {
 	margin-bottom: 25px;
 	width: 98%;
