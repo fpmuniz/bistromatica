@@ -107,3 +107,7 @@ form {
 	text-decoration: none;
 	color: initial;
 }
+
+.centralize {
+	text-align: center;
+}
