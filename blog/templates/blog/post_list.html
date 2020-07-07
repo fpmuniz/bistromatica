@@ -1,0 +1,15 @@
+{% extends "./base.html" %}
+
+{% block content %}
+{% for post in object_list %}
+<article>
+	<h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+	<a href="{% url 'post_edit' post.pk %}">(edit)</a>
+	<p class="italic">by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
+
+	<div class="text">
+		{{ post.html_content|safe }}
+	</div>
+</article>
+{% endfor %}
+{% endblock %}

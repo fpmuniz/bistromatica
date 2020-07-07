@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/css/base.css' %}">
+	<title>
+		{% block title %}
+		bistromática
+		{% endblock title %}
+	</title>
+</head>
+
+<body>
+	<header>
+		{% block header %}
+		<h1><a href="{% url 'index' %}">bistromática</a></h1>
+		<h2>Um blog sobre algoritmos, programação e suas implicações na vida, o universo e tudo o mais.</h2>
+		{% endblock header %}
+	</header>
+
+	{% block navigation %}
+	{% endblock navigation %}
+
+	{% block content %}
+	{% endblock content %}
+</body>
+</html>
