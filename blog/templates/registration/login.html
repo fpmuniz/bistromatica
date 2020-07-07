@@ -1,7 +1,8 @@
-{% extends "../blog/base.html" %}
+{% extends "./base.html" %}
 
 {% block content %}
 
+<article>
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
@@ -19,11 +20,11 @@
 	{% csrf_token %}
 	{{ form }}
 
-	<input type="submit" value="login">
+	<button type="submit" value="login">login</button>
 	<input type="hidden" name="next" value="{{ next }}">
 </form>
 
-{# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</article>
 
 {% endblock content %}
