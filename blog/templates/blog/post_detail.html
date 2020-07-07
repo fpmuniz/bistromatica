@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	{% load static %}
-	<title>bistromática - {{ post.title }}</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}">
-</head>
+{% extends "./base.html" %}
 
-<body>
-	<header>
-		<h1><a href="{% url 'index' %}">bistromática</a></h1>
-	</header>
-	<article>
-		<h2>{{ post.title }}</h2>
-		<a href="{% url 'post_edit' post.pk %}">(edit)</a>
-		<p class="italic">by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
 
-		<div class="text">
-			{{ post.html_content|safe }}
-		</div>
-	</article>
-</body>
-</html>
+{% block content %}
+<article>
+	<h2>{{ post.title }}</h2>
+	<a href="{% url 'post_edit' post.pk %}">(edit)</a>
+	<p class="italic">by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
+
+	<div class="text">
+		{{ post.html_content|safe }}
+	</div>
+</article>
+{% endblock content %}

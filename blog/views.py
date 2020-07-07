@@ -11,7 +11,7 @@ def index(request):
 class PostListView(ListView):
 	model = Post
 	paginate_by = 10
-	template_name = 'blog/index.html'
+	template_name = 'blog/post_list.html'
 
 	def get_queryset(self):
 		return Post.objects.order_by('-published_at')

@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	{% load static %}
-	<title>bistromática - edit post</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'blog/css/post_edit.css' %}">
-</head>
+{% extends "./base.html" %}
+{% load static %}
 
-<body>
-	<header>
-		<h1><a href="{% url 'index' %}">bistromática</a></h1>
-		<h2>edit post</h2>
-	</header>
-	<article>
-		<form method="post" action="">
+{% block title %}
+bistromática - edit post
+{% endblock title %}
+
+{% block content %}
+<article>
+	<form method="post" action="">
 		<input id="title" value="{{ post.title }}"></input>
 		<textarea id="content" rows=30>{{ post.content }}</textarea>
 		<button type="button">Cancel</button>
@@ -21,7 +15,5 @@
 		<button type="button">Publish!</button>
 		<button type="button">Save</button>
 	</form>
-	</form>
-	</article>
-</body>
-</html>
+</article>
+{% endblock content %}
