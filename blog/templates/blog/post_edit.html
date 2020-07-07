@@ -10,7 +10,7 @@ bistromática - edit post
 	<form method="post">
 		{% csrf_token %}
 		{{ form }}
-		<button formaction="{% url 'index' %}" formmethod ="get" formnovalidate="true">Cancel</button>
+		<!-- <button formaction="{% url 'index' %}" formmethod ="get" formnovalidate="true">Cancel</button> -->
 
 		{% if post.id %}
 		<button formaction="{% url 'post_delete' post.pk %}" formmethod="get">Delete</button>
