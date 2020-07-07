@@ -31,7 +31,6 @@ class Post(models.Model):
 			warnings.warn(w)
 			return
 		self.published_at = datetime.now()
-		self.save()
 
 	def save(self, *args, **kwargs):
 		self.html_content = markdown(self.content)
