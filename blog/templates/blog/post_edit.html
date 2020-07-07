@@ -10,7 +10,9 @@ bistromática - edit post
 	<form method="post" action="">
 		{{ form }}
 		<button type="button">Cancel</button>
+		{% if post.id %}
 		<button type="button">Delete</button>
+		{% endif %}
 		<button type="button">Publish!</button>
 		<button type="button">Save</button>
 	</form>

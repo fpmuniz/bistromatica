@@ -38,5 +38,5 @@ class PostEditView(LoginRequiredMixin, DetailView):
 		else:
 			post = Post.all_objects.get(pk=pk)
 		form = PostForm(instance=post)
-		context = {'form': form}
+		context = {'form': form, 'post': post}
 		return HttpResponse(template.render(context, request))
