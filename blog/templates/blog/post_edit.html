@@ -7,7 +7,7 @@ bistromática - edit post
 
 {% block content %}
 <article>
-	<form method="post" action="">
+	<form method="post">
 		{% csrf_token %}
 		{{ form }}
 		<button type="button">Cancel</button>
