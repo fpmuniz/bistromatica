@@ -19,8 +19,19 @@
 		{% endblock header %}
 	</header>
 
-	{% block navigation %}
-	{% endblock navigation %}
+	<nav>
+		{% block navigation %}
+
+		|
+		<a href="{% url 'post_list' %}">Home</a> |
+		<a href="{% url 'login' %}">Login</a> |
+		{% if user.is_authenticated %}
+		<a href="{% url 'post_edit' %}">New post</a> |
+		<a href="/admin/">Admin</a> |
+		{% endif %}
+
+		{% endblock navigation %}
+	</nav>
 
 	{% block content %}
 	{% endblock content %}

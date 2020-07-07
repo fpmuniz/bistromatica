@@ -26,8 +26,13 @@ article {
 	border-width: 2px;
 	border-radius: 15px;
 	padding: 50px;
-	margin-top: 50px;
+	margin-top: 20px;
 	margin-bottom: 50px;
+}
+
+nav {
+	margin-top: 20px;
+	text-align: center;
 }
 
 p {
