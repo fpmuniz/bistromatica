@@ -52,12 +52,17 @@ a:hover {
 	font-style: italic;
 }
 
-#title {
+label {
+	color: var(--text);
+}
+
+input {
 	margin-bottom: 25px;
 	width: 98%;
 }
 
-#content {
+textarea {
+	height: 350px;
 	width: 100%;
 	min-width: 100%;
 	max-width: 100%;

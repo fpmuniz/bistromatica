@@ -8,8 +8,7 @@ bistromática - edit post
 {% block content %}
 <article>
 	<form method="post" action="">
-		<input id="title" value="{{ post.title }}"></input>
-		<textarea id="content" rows=30>{{ post.content }}</textarea>
+		{{ form }}
 		<button type="button">Cancel</button>
 		<button type="button">Delete</button>
 		<button type="button">Publish!</button>
