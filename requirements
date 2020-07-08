@@ -1,4 +1,4 @@
 django
 factory_boy
 psycopg2
-markdown
+django-ckeditor

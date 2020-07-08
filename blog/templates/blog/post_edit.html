@@ -9,6 +9,7 @@ bistromática - edit post
 <article>
 	<form method="post">
 		{% csrf_token %}
+		{{ form.media }}
 		{{ form }}
 		<!-- <button formaction="{% url 'index' %}" formmethod ="get" formnovalidate="true">Cancel</button> -->
 
