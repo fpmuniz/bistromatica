@@ -11,10 +11,10 @@ bistromática - edit post
 		{% csrf_token %}
 		{{ form.media }}
 		{{ form }}
-		<!-- <button formaction="{% url 'index' %}" formmethod ="get" formnovalidate="true">Cancel</button> -->
+		<a href="{% url 'index' %}">Cancel</a> |
 
 		{% if post.id %}
-		<button formaction="{% url 'post_delete' post.pk %}" formmethod="get">Delete</button>
+		<a href="{% url 'post_delete' post.pk %}">Delete</a>
 		{% endif %}
 
 		{% if not post.published_at %}

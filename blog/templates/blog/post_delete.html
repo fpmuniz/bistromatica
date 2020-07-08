@@ -6,7 +6,7 @@
 		{% csrf_token %}
 		<p>Are you sure you want to delete this post?</p>
 		<p><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></p>
-		<button formaction="{% url 'index' %}">Cancel</button>
+		<a href="{% url 'index' %}">Cancel</a>
 		<button type="submit">Delete!</button>
 	</form>
 </article>
