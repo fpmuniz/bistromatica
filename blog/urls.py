@@ -11,5 +11,6 @@ urlpatterns = [
     path('posts/<int:pk>/publish/', views.PostPublishView.as_view(), name='post_publish'),
     path('posts/publish/', views.PostPublishView.as_view(), name='post_publish'),
     path('about/', views.about, name='about'),
+    path('donate/', views.donate, name='donate'),
     path('', views.index, name='index'),
 ]

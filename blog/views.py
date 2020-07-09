@@ -17,6 +17,11 @@ def about(request):
 	context = {}
 	return HttpResponse(template.render(context, request))
 
+def donate(request):
+	template = loader.get_template('blog/donate.html')
+	context = {}
+	return HttpResponse(template.render(context, request))
+
 class PostListView(ListView):
 	queryset = Post.objects.order_by('-published_at')
 	paginate_by = 10
