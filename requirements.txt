@@ -4,3 +4,4 @@ psycopg2
 django-ckeditor
 gunicorn
 django-heroku
+dj_database_url
