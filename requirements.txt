@@ -2,3 +2,4 @@ django
 factory_boy
 psycopg2
 django-ckeditor
+guinicorn
