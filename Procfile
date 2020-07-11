@@ -1,1 +1,1 @@
-web: gunicorn bistromatica/wsgi:application
+web: gunicorn bistromatica.wsgi
