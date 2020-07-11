@@ -20,24 +20,26 @@
 	</header>
 
 	<nav>
-		{% block navigation %}
+		<p>
+			{% block navigation %}
 
-		|
-		<a href="{% url 'index' %}">Home</a> |
-		<a href="{% url 'about' %}">About</a> |
-		<a href="{% url 'donate' %}">Donate</a> |
+			|
+			<a href="{% url 'index' %}">Home</a> |
+			<a href="{% url 'about' %}">About</a> |
+			<a href="{% url 'donate' %}">Donate</a> |
 
-		{% if not user.is_authenticated %}
-		<a href="{% url 'login' %}">Login</a> |
-		{% endif %}
-		
-		{% if user.is_authenticated %}
-		<a href="{% url 'post_edit' %}">New post</a> |
-		<a href="/admin/">Admin</a> |
-		<a href="{% url 'logout' %}">Logout</a> |
-		{% endif %}
+			{% if not user.is_authenticated %}
+			<a href="{% url 'login' %}">Login</a> |
+			{% endif %}
+			
+			{% if user.is_authenticated %}
+			<a href="{% url 'post_edit' %}">New post</a> |
+			<a href="/admin/">Admin</a> |
+			<a href="{% url 'logout' %}">Logout</a> |
+			{% endif %}
 
-		{% endblock navigation %}
+			{% endblock navigation %}
+		</p>
 	</nav>
 
 	{% block content %}
