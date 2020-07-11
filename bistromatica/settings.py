@@ -37,7 +37,7 @@ with key_file.open() as f:
 DEBUG = bool(int(os.environ['DJANGO_DEBUG']))
 
 ALLOWED_HOSTS = [
-    # 'bistromatica.herokuapp.com',
+    'bistromatica.herokuapp.com',
 ]
 
 
@@ -95,7 +95,7 @@ DATABASES = {
     # }
 }
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=False)
 
 
 # Password validation
@@ -140,4 +140,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static/'
 
 
-django_heroku.settings(locals())
+if not DEBUG:
+    django_heroku.settings(locals())
