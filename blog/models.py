@@ -17,6 +17,7 @@ class Post(models.Model):
 	published_at = models.DateTimeField(null=True, editable=False)
 	title = models.CharField(max_length=256)
 	content = RichTextField(blank=True)
+	thread = models.ForeignKey('Thread', on_delete=models.SET_NULL, null=True, blank=True)
 
 	objects = PostManager()
 	all_objects = models.Manager()
@@ -30,3 +31,20 @@ class Post(models.Model):
 			warnings.warn(w)
 			return
 		self.published_at = datetime.now()
+
+	def __str__(self):
+		return self.title
+
+	def __repr__(self):
+		return f'Post <{self}>'
+
+
+class Thread(models.Model):
+	name = models.CharField(max_length=256)
+	description = models.CharField(max_length=2048)
+
+	def __str__(self):
+		return self.name
+
+	def __repr__(self):
+		return f'Thread <{self}>'
