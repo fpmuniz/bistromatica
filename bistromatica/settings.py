@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -137,3 +138,6 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'static/'
+
+
+django_heroku.settings(locals())
