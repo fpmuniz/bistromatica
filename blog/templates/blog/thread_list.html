@@ -1,0 +1,20 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h2>Cursos disponíveis</h2>
+<p>Veja aqui os cursos disponíveis organizados por categorias.</p>
+
+{% for thread in object_list %}
+<article>
+	<h3><a href="{% url 'thread_detail' thread.pk %}">{{ thread.name }}</a></h2>
+
+	<p>
+		| 
+		{% for post in thread.post_set.all %}
+			<a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> |
+		{% endfor %}
+	</p>
+</article>
+{% endfor %}
+{% endblock %}

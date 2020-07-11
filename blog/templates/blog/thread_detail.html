@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+
+
+{% block content %}
+<article>
+	<h2>{{ thread.name }}</h2>
+
+	<p>{{ thread.description }}</p>
+
+	<ol>
+		{% for post in thread.post_set.all %}
+		<li>
+			<a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+		</li>
+		{% endfor %}
+	</ol>
+</article>
+{% endblock content %}
