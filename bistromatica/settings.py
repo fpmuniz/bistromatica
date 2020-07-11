@@ -34,7 +34,9 @@ with key_file.open() as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DJANGO_DEBUG']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'bistromatica.herokuapp.com',
+]
 
 
 # Application definition
