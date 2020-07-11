@@ -3,3 +3,4 @@ factory_boy
 psycopg2
 django-ckeditor
 gunicorn
+django-heroku
