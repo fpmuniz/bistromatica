@@ -148,3 +148,11 @@ STATIC_ROOT = BASE_DIR / 'static/'
 
 if not DEBUG:
     django_heroku.settings(locals())
+
+
+# SECURITY
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_REFERRER_POLICY = 'origin'
