@@ -5,12 +5,12 @@ from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Post
-from .forms import PostForm
+from .models import Post, Thread
+from .forms import PostForm, ThreadForm
 
 # Create your views here.
 def index(request):
-	return HttpResponseRedirect('posts/')
+	return HttpResponseRedirect('threads/')
 
 def about(request):
 	template = loader.get_template('blog/about.html')
@@ -90,3 +90,13 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 		post = self.queryset.get(pk=pk)
 		post.delete()
 		return HttpResponseRedirect('/posts/')
+
+
+class ThreadDetailView(DetailView):
+	model = Thread
+	template_name = 'blog/thread_detail.html'
+
+
+class ThreadListView(ListView):
+	model = Thread
+	template_name = 'blog/thread_list.html'
