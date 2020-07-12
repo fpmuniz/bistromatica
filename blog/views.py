@@ -66,6 +66,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 	template_name = 'blog/post_form.html'
 	form_class = PostForm
 
+	def form_valid(self, form):
+		form.instance.creator = self.request.user
+		return super().form_valid(form)
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
 	queryset = Post.all_objects.all()

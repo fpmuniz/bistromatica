@@ -6,10 +6,10 @@ from .models import Post, Thread
 class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
-		fields = '__all__'
+		fields = ['title', 'content', 'thread']
 
 
 class ThreadForm(forms.ModelForm):
 	class Meta:
 		model = Thread
-		fields = '__all__'
+		fields = ['name', 'description']
