@@ -5,12 +5,12 @@
   "repository": "https://github.com/fpmuniz/bistromatica",
   "keywords": ["python", "django" ],
   "addons": [ "heroku-postgresql" ],
-  // "env": {
-  //   "DJANGO_DEBUG": {
-  //     "description": "The secret key for the Django application.",
-  //     "generator": "secret"
-  //   }
-  // },
+  "env": {
+    "DJANGO_DEBUG": {
+      "description": "Specify if DEBUG should be enabled. DO NOT ENABLE IT IN PRODUCTION!",
+      "default": 0,
+    }
+  },
   "environments": {
     "test": {
       "scripts": {
