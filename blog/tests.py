@@ -35,6 +35,7 @@ class PostFactory(factory.DjangoModelFactory):
 
 class PublishedPostFactory(PostFactory):
 	published_at = factory.LazyFunction(datetime.now)
+	visible = True
 
 
 class PostTestCase(TestCase):
@@ -42,17 +43,13 @@ class PostTestCase(TestCase):
 		self.post = PostFactory.create()
 
 	def test_publish(self):
-		self.post.publish()
+		self.post.visible = True
+		self.post.save()
 		self.assertIsNotNone(self.post.published_at)
 
 	def test_unpublished_not_showing(self):
 		self.assertEqual(Post.objects.count(), 0)
 		self.assertEqual(Post.all_objects.count(), 1)
-
-	def test_publish_twice_warns(self):
-		self.post.publish()
-		with self.assertWarns(self.post.AlreadyPublishedWarning):
-			self.post.publish()
 
 class ThreadTestCase(TestCase):
 	def setUp(self):

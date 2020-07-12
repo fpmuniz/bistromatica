@@ -10,19 +10,11 @@ bistromática - edit post
 	<form method="post">
 		{% csrf_token %}
 		{{ form.media }}
-		{{ form }}
+		{{ form.as_p }}
 		<a href="{% url 'index' %}">Cancel</a> |
 
 		{% if post.id %}
 		<a href="{% url 'post_delete' post.pk %}">Delete</a>
-		{% endif %}
-
-		{% if not post.published_at %}
-			{% if post.pk %}
-			<button formaction="{% url 'post_publish' post.pk %}">Publish!</button>
-			{% else %}
-			<button formaction="{% url 'post_publish' %}">Publish!</button>
-			{% endif %}
 		{% endif %}
 
 		<button type="submit">Save</button>
