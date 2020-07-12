@@ -28,5 +28,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
+        export DJANGO_DEBUG=1
+        export DATABASE_URL="postgresql://localhost/bistro"
         coverage run --source='.' --omit='./blog/tests.py' manage.py test
         coverate report --fail-under=100
