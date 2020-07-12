@@ -1,0 +1,23 @@
+{
+  "name": "bistromatica",
+  "description": "Um blog sobre programação em Python",
+  "image": "heroku/python",
+  "repository": "https://github.com/fpmuniz/bistromatica",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ],
+  // "env": {
+  //   "DJANGO_DEBUG": {
+  //     "description": "The secret key for the Django application.",
+  //     "generator": "secret"
+  //   }
+  // },
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python manage.py collectstatic --noinput",
+        "test": "coverage run --source='.' --omit='./blog/tests.py' manage.py test blog ",
+        "coverage": "coverage report --fail-under=100"
+      }
+    }
+  }
+}
