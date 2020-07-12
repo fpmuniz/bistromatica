@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView, DeleteView
+from django.views.generic import TemplateView, RedirectView, ListView, DetailView, CreateView, FormView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.models import User
@@ -10,31 +10,38 @@ from .models import Post, Thread
 from .forms import PostForm, ThreadForm
 
 # Create your views here.
-def index(request):
-	return HttpResponseRedirect('posts/')
-
-def about(request):
-	template = loader.get_template('blog/about.html')
-	context = {}
-	return HttpResponse(template.render(context, request))
-
-def donate(request):
-	template = loader.get_template('blog/donate.html')
-	context = {}
-	return HttpResponse(template.render(context, request))
+class Index(RedirectView):
+	url = reverse_lazy('post_list')
 
 
-class PostListView(ListView):
+class About(TemplateView):
+	template_name = 'blog/about.html'
+
+
+class Donate(TemplateView):
+	template_name = 'blog/donate.html'
+
+
+class PostListView(RedirectView):
+	def dispatch(self, request, *args, **kwargs):
+		if request.user.is_authenticated:
+			self.url = reverse_lazy('post_full_list')
+		else:
+			self.url = reverse_lazy('post_public_list')
+		return super().dispatch(request, *args, **kwargs)
+
+
+class PublishedPostListView(ListView):
 	queryset = Post.objects.order_by('-published_at')
 	paginate_by = 10
 	template_name = 'blog/post_list.html'
 
-	def get(self, request, *args, **kwargs):
-		if request.user.is_authenticated:
-			self.queryset = Post.all_objects.order_by('-published_at')
-			return super().get(request, *args, **kwargs)
-		else:
-			return super().get(request, *args, **kwargs)
+
+class AllPostsListView(LoginRequiredMixin, ListView):
+	queryset = Post.all_objects.order_by('-published_at', '-created_at')
+	paginate_by = 10
+	template_name = 'blog/post_List.html'
+
 
 
 class PostDetailView(DetailView):

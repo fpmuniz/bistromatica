@@ -3,10 +3,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('about/', views.about, name='about'),
-    path('donate/', views.donate, name='donate'),
+    path('', views.Index.as_view(), name='index'),
+    path('about/', views.About.as_view(), name='about'),
+    path('donate/', views.Donate.as_view(), name='donate'),
     path('posts/', views.PostListView.as_view(), name='post_list'),
+    path('posts/public/', views.PublishedPostListView.as_view(), name='post_public_list'),
+    path('posts/all/', views.AllPostsListView.as_view(), name='post_full_list'),
     path('posts/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
     path('posts/<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_update'),
     path('posts/new/', views.PostCreateView.as_view(), name='post_create'),
