@@ -30,6 +30,6 @@ jobs:
       run: |
         export DJANGO_DEBUG=1
         export DATABASE_URL="postgresql://localhost/bistro"
-        service postgresql start
+        sudo systemctl start postgresql
         coverage run --source='.' --omit='./blog/tests.py' manage.py test
         coverate report --fail-under=100
