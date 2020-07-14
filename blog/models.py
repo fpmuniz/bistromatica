@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
+import bleach
 
 # Create your models here.
 class PostManager(models.Manager):
@@ -36,6 +37,7 @@ class Post(models.Model):
 	def save(self, *args, **kwargs):
 		if self.visible and self.published_at is None:
 			self.published_at = datetime.now()
+		self.content = bleach.clean(self.content)
 		super().save(*args, **kwargs)
 
 
