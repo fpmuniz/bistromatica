@@ -34,10 +34,18 @@ class Post(models.Model):
 	def get_absolute_url(self):
 		return reverse('post_detail', kwargs={'pk': self.pk})
 
+	def clean_html(self):
+		tags = bleach.sanitizer.ALLOWED_TAGS.copy()
+		tags += ['p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+		attrs = bleach.sanitizer.ALLOWED_ATTRIBUTES.copy()
+		attrs.setdefault('img', [])
+		attrs['img'] += ['src', 'alt']
+		self.content = bleach.clean(self.content, tags=tags, attributes=attrs)
+
 	def save(self, *args, **kwargs):
 		if self.visible and self.published_at is None:
 			self.published_at = datetime.now()
-		self.content = bleach.clean(self.content)
+		self.clean_html()
 		super().save(*args, **kwargs)
 
 
