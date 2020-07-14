@@ -156,3 +156,18 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_REFERRER_POLICY = 'origin'
+
+# ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Blockquote'],
+            ['Styles', 'Format'],
+            ['Indent', 'Outdent'],
+            ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Image', 'Table', 'Smiley', 'SpecialChar',],
+            ['RemoveFormat',]
+        ]
+    }
+}
