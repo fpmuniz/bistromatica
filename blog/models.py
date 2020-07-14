@@ -51,10 +51,7 @@ class Post(models.Model):
 		return reverse('post_detail', kwargs={'pk': self.pk})
 
 	def clean_html(self):
-		print(self.content[:1000])
 		self.content = bleach.clean(self.content, tags=Whitelist.tags, attributes=Whitelist.attrs, styles=Whitelist.styles)
-		print('-'*80)
-		print(self.content[:1000])
 
 	def save(self, *args, **kwargs):
 		if self.visible and self.published_at is None:
