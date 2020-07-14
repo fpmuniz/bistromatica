@@ -9,6 +9,19 @@ from ckeditor.fields import RichTextField
 import bleach
 
 # Create your models here.
+
+# HTML sanitizer whitelists
+class Whitelist:
+	tags = bleach.sanitizer.ALLOWED_TAGS.copy()
+	tags += ['p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'br']
+	attrs = bleach.sanitizer.ALLOWED_ATTRIBUTES.copy()
+	attrs.setdefault('img', [])
+	attrs['img'] += ['src', 'alt']
+	attrs.setdefault('p', [])
+	attrs['p'] += ['style']
+	styles = bleach.sanitizer.ALLOWED_STYLES.copy()
+	styles += ['color', 'background-color', 'text-align']
+
 class PostManager(models.Manager):
 	def get_queryset(self):
 		return super().get_queryset().exclude(visible=False)
@@ -36,12 +49,10 @@ class Post(models.Model):
 		return reverse('post_detail', kwargs={'pk': self.pk})
 
 	def clean_html(self):
-		tags = bleach.sanitizer.ALLOWED_TAGS.copy()
-		tags += ['p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'br']
-		attrs = bleach.sanitizer.ALLOWED_ATTRIBUTES.copy()
-		attrs.setdefault('img', [])
-		attrs['img'] += ['src', 'alt']
-		self.content = bleach.clean(self.content, tags=tags, attributes=attrs)
+		print(self.content[:1000])
+		self.content = bleach.clean(self.content, tags=Whitelist.tags, attributes=Whitelist.attrs, styles=Whitelist.styles)
+		print('-'*80)
+		print(self.content[:1000])
 
 	def save(self, *args, **kwargs):
 		if self.visible and self.published_at is None:
