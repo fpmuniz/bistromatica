@@ -54,6 +54,24 @@ class PostTestCase(TestCase):
 		self.assertEqual(Post.objects.count(), 0)
 		self.assertEqual(Post.all_objects.count(), 1)
 
+	def test_html_basic_sanitizing(self):
+		post = PostFactory.create(content='an <script>evil()</script> example')
+		post.save()
+		sanitized = 'an &lt;script&gt;evil()&lt;/script&gt; example'
+		self.assertEqual(post.content, sanitized)
+
+	def test_html_sanitizing_allows_text_content(self):
+		content = '<p>text</p><h1>title</h1>'
+		post = PostFactory.create(content=content)
+		post.save()
+		self.assertEqual(post.content, content)
+
+	def test_html_sanitizing_allows_images(self):
+		content = '<img alt="Imagem" src="/bla/">'
+		post = PostFactory.create(content=content)
+		post.save()
+		self.assertEqual(post.content, content)
+
 	def test_repr(self):
 		try:
 			self.post.__repr__()
@@ -65,8 +83,6 @@ class PostTestCase(TestCase):
 			self.post.__str__()
 		except BaseException as e:
 			self.fail(f'{e} was raised.')
-
-
 
 
 class ThreadTestCase(TestCase):
