@@ -1,5 +1,6 @@
 import warnings
 from datetime import datetime
+import re
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -47,6 +48,12 @@ class Post(models.Model):
 			self.published_at = datetime.now()
 		self.clean_html()
 		super().save(*args, **kwargs)
+
+	@property
+	def first_paragraph(self):
+		pat = re.compile(r'<p>.*?</p>')
+		match = pat.search(self.content)
+		if match: return match[0]
 
 
 class Thread(models.Model):

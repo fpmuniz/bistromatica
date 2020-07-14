@@ -12,7 +12,7 @@
 	<p class="italic">by {{ post.creator.first_name }} {{ post.creator.last_name }} at {{ post.published_at }}</p>
 
 	<div class="text">
-		{{ post.content|safe|slice:":512" }}... 
+		{{ post.first_paragraph|safe }}
 		<a href="{% url 'post_detail' post.pk %}">(continuar lendo)</a>
 	</div>
 </article>
