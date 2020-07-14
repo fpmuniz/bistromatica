@@ -39,6 +39,8 @@ class Post(models.Model):
 	objects = PostManager()
 	all_objects = models.Manager()
 
+	PARAGRAPH_PATTERN = re.compile(r'<p.*?>.*?</p>', flags=re.MULTILINE)
+
 	def __str__(self):
 		return self.title
 
@@ -61,10 +63,15 @@ class Post(models.Model):
 		super().save(*args, **kwargs)
 
 	@property
-	def first_paragraph(self):
-		pat = re.compile(r'<p>.*?</p>')
-		match = pat.search(self.content)
-		if match: return match[0]
+	def preview(self):
+		pat = self.PARAGRAPH_PATTERN
+		match = pat.finditer(self.content)
+		if not match: return
+		out = []
+		for i, text in enumerate(match):
+			if i >= 3: break
+			out.append(text[0])
+		return ''.join(out)
 
 
 class Thread(models.Model):
