@@ -1,15 +1,18 @@
 :root {
 	--dark-bg: #171714;
-	--text: white;
+	/*--text: white;*/
+	--text: #dbdbdb;
 	--light-green: #65b577;
+	--default-font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
 	background: var(--dark-bg);
-	font-family: Verdana;
+	font-family: var(--default-font-family);
+	font-size: large;
 	margin: auto;
 	width: 75%;
-	max-width: 800px;
+	max-width: 900px;
 }
 
 header {
@@ -99,7 +102,7 @@ textarea {
 button {
 	padding: 5px 25px;
 	margin: 0px 10px;
-	font-family: Verdana;
+	font-family: var(--default-font-family);
 }
 
 form {
