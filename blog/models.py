@@ -37,7 +37,7 @@ class Post(models.Model):
 
 	def clean_html(self):
 		tags = bleach.sanitizer.ALLOWED_TAGS.copy()
-		tags += ['p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+		tags += ['p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'br']
 		attrs = bleach.sanitizer.ALLOWED_ATTRIBUTES.copy()
 		attrs.setdefault('img', [])
 		attrs['img'] += ['src', 'alt']
