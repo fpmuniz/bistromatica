@@ -1,44 +1,13 @@
-from datetime import datetime
-
-import factory
 from django.test import TestCase
-from django.contrib.auth.models import User
+
 from django.urls import reverse
 from django.forms.models import model_to_dict
 
-from .models import Post, Thread
-from .forms import PostForm, ThreadForm
+from blog.models import Post, Thread
+from blog.factories import PostFactory, PublishedPostFactory, ThreadFactory, UserFactory
+from blog.forms import PostForm, ThreadForm
 
 # Create your tests here.
-class UserFactory(factory.DjangoModelFactory):
-	class Meta:
-		model = User
-
-	username = factory.Faker('user_name')
-	password = factory.Faker('password')
-
-
-class ThreadFactory(factory.DjangoModelFactory):
-	class Meta:
-		model = Thread
-
-	name = factory.Faker('sentence')
-	description = factory.Faker('text')
-
-
-class PostFactory(factory.DjangoModelFactory):
-	class Meta:
-		model = Post
-
-	creator = factory.LazyFunction(UserFactory.create)
-	thread = factory.LazyFunction(ThreadFactory.create)
-	title = factory.Faker('sentence')
-	content = factory.Faker('text')
-
-
-class PublishedPostFactory(PostFactory):
-	published_at = factory.LazyFunction(datetime.now)
-	visible = True
 
 
 class PostTestCase(TestCase):
@@ -74,8 +43,10 @@ class ThreadTestCase(TestCase):
 		self.thread = ThreadFactory.create()
 
 	def test_simple_thread(self):
-		PublishedPostFactory.create_batch(3, thread=self.thread)
-		self.assertEqual(self.thread.post_set.count(), 3)
+		posts = PublishedPostFactory.create_batch(3)
+		for post in posts:
+			self.thread.posts.add(post)
+		self.assertEqual(self.thread.posts.count(), 3)
 
 	def test_repr(self):
 		try:
