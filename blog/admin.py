@@ -1,14 +1,20 @@
 from django.contrib import admin
 
-from blog.models import Post, Thread
+from blog.models import Post, Thread, ThreadItem
 
 # Register your models here.
+
+
+class ThreadItemInLine(admin.TabularInline):
+	model = ThreadItem
+
+
 class PostAdmin(admin.ModelAdmin):
-	pass
+	inlines = (ThreadItemInLine,)
 
 
 class ThreadAdmin(admin.ModelAdmin):
-	pass
+	inlines = (ThreadItemInLine,)
 
 
 admin.site.register(Post, PostAdmin)
