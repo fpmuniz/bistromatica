@@ -11,7 +11,7 @@
 
 	<p>
 		| 
-		{% for post in thread.post_set.all %}
+		{% for post in thread.posts.all %}
 			<a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> |
 		{% endfor %}
 	</p>
