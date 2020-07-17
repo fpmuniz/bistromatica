@@ -8,7 +8,7 @@
 	<p>{{ thread.description }}</p>
 
 	<ol>
-		{% for post in thread.post_set.all %}
+		{% for post in thread.posts.all %}
 		<li>
 			<a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
 		</li>
