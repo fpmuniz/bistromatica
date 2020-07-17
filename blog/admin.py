@@ -10,7 +10,7 @@ class ThreadItemInLine(admin.TabularInline):
 
 
 class PostAdmin(admin.ModelAdmin):
-	inlines = (ThreadItemInLine,)
+	pass
 
 
 class ThreadAdmin(admin.ModelAdmin):
