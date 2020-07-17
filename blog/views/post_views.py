@@ -1,25 +1,9 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, RedirectView, ListView, DetailView, CreateView, FormView, UpdateView, DeleteView
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from django.contrib.auth.models import User
+from django.views.generic import RedirectView, ListView, DetailView, CreateView, FormView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Post, Thread
-from .forms import PostForm, ThreadForm
-
-# Create your views here.
-class Index(RedirectView):
-	url = reverse_lazy('post_list')
-
-
-class About(TemplateView):
-	template_name = 'blog/about.html'
-
-
-class Donate(TemplateView):
-	template_name = 'blog/donate.html'
+from blog.models import Post
+from blog.forms import PostForm
 
 
 class PostListView(RedirectView):
@@ -76,13 +60,3 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 	template_name = 'blog/post_delete.html'
 	model = Post
 	success_url = reverse_lazy('post_list')
-
-
-class ThreadDetailView(DetailView):
-	model = Thread
-	template_name = 'blog/thread_detail.html'
-
-
-class ThreadListView(ListView):
-	model = Thread
-	template_name = 'blog/thread_list.html'
